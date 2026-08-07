@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Burj Khalifa Restaurant</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- NAVIGATION -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="images/logo.png" alt="Burj Khalifa Restaurant" class="logo-img">
+            </div>
+            <button class="nav-toggle" id="navToggle" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#" onclick="showPage('home'); closeMobileMenu();">Ana Səhifə</a></li>
+                <li><a href="#" onclick="showPage('menu'); closeMobileMenu();">Menyu</a></li>
+                <li><a href="#" onclick="showPage('gallery'); closeMobileMenu();">Qalerya</a></li>
+                <li><a href="#" onclick="showPage('reservation'); closeMobileMenu();">Rezervasiya</a></li>
+                <li><a href="#" onclick="showPage('faq'); closeMobileMenu();">FAQ</a></li>
+                <li><a href="#" onclick="showPage('vacancies'); closeMobileMenu();">Vakansiyalar</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- CART BUTTON (floating) -->
+    <button class="cart-btn" id="cartBtn" onclick="toggleCart()" aria-label="Səbət">
+        <i class="fas fa-shopping-basket"></i>
+        <span class="cart-count" id="cartCount">0</span>
+    </button>
+
+    <!-- CART PANEL -->
+    <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+    <div class="cart-panel" id="cartPanel">
+        <div class="cart-header">
+            <h3>Səbət</h3>
+            <button onclick="toggleCart()" class="cart-close"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <p class="cart-empty">Səbət boşdur</p>
+        </div>
+        <div class="cart-footer" id="cartFooter" style="display:none;">
+            <div class="cart-total">
+                <span>Cəmi:</span>
+                <strong id="cartTotal">0 ₼</strong>
+            </div>
+            <button class="btn-order" onclick="placeOrder()">
+                <i class="fab fa-whatsapp"></i> Sifariş Et
+            </button>
+        </div>
+    </div>
+
+    <!-- ========== HOME PAGE ========== -->
+    <div id="page-home" class="page active">
+        <!-- HERO -->
+        <section class="hero">
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <img src="images/logo.png" alt="Burj Khalifa" class="hero-logo">
+                <p class="hero-subtitle">Bakının mərkəzində premium restoran təcrübəsi</p>
+                <div class="hero-btns">
+                    <button class="btn-primary" onclick="showPage('reservation')">Rezervasiya Et</button>
+                    <button class="btn-outline" onclick="showPage('menu')">Menyuya Bax</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT -->
+        <section class="section" id="about">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Haqqımızda</h2>
+                    <div class="divider"></div>
+                </div>
+                <div class="about-grid">
+                    <div class="about-text">
+                        <p>Burj Khalifa Restaurant – Bakının ürəyində yerləşən, Azərbaycan və dünya mətbəxinin ən yaxşı nümunələrini bir araya gətirən premium restorandır. Hər bir ziyarətçimizə unutulmaz kulinariya təcrübəsi yaşatmaq missiyamızdır.</p>
+                        <p>2020-ci ildən fəaliyyət göstərən restoranımız, peşəkar aşpazlar komandası, seçilmiş keyfiyyətli məhsullar və istiqliqli xidmət anlayışı ilə fərqlənir. Sevdiklərinizlə keçirəcəyiniz hər anı xüsusi etmək üçün buradayıq.</p>
+                        <div class="about-stats">
+                            <div class="stat">
+                                <span class="stat-num">5+</span>
+                                <span class="stat-label">İllik Təcrübə</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-num">50+</span>
+                                <span class="stat-label">Menyu Seçimi</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-num">1000+</span>
+                                <span class="stat-label">Məmnun Müştəri</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="about-image">
+                        <img src="images/dish-lamb.jpg" alt="Burj Khalifa Restaurant" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- WORKING HOURS -->
+        <section class="section section-dark" id="hours">
+            <div class="container">
+                <div class="section-header">
+                    <h2>İş Saatları</h2>
+                    <div class="divider"></div>
+                </div>
+                <div class="hours-grid">
+                    <div class="hours-card">
+                        <div class="hours-icon"><i class="fas fa-sun"></i></div>
+                        <h4>Bazar ertəsi – Cümə</h4>
+                        <p class="hours-time">09:00 – 23:00</p>
+                        <span class="hours-badge open">Açıq</span>
+                    </div>
+                    <div class="hours-card">
+                        <div class="hours-icon"><i class="fas fa-star"></i></div>
+                        <h4>Şənbə</h4>
+                        <p class="hours-time">10:00 – 00:00</p>
+                        <span class="hours-badge open">Açıq</span>
+                    </div>
+                    <div class="hours-card">
+                        <div class="hours-icon"><i class="fas fa-moon"></i></div>
+                        <h4>Bazar</h4>
+                        <p class="hours-time">10:00 – 23:00</p>
+                        <span class="hours-badge open">Açıq</span>
+                    </div>
+                </div>
+                <p class="hours-note"><i class="fas fa-info-circle"></i> Bayram günlərində iş saatları dəyişə bilər. Məlumat üçün bizimlə əlaqə saxlayın.</p>
+            </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section class="section" id="contact">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Əlaqə</h2>
+                    <div class="divider"></div>
+                </div>
+                <div class="contact-grid">
+                    <a href="https://wa.me/994559406018" class="contact-card" target="_blank" rel="noopener">
+                        <div class="contact-icon whatsapp"><i class="fab fa-whatsapp"></i></div>
+                        <h4>WhatsApp</h4>
+                        <p>+994 55 940 60 18</p>
+                        <span class="contact-action">Mesaj göndər</span>
+                    </a>
+                    <a href="https://www.instagram.com/burjkhalifa.baku/" class="contact-card" target="_blank" rel="noopener">
+                        <div class="contact-icon instagram"><i class="fab fa-instagram"></i></div>
+                        <h4>Instagram</h4>
+                        <p>@burjkhalifa.baku</p>
+                        <span class="contact-action">Profili izlə</span>
+                    </a>
+                    <a href="https://www.google.com/maps/place/Bakı/@40.3947365,49.6898016,32622m/data=!3m2!1e3!4b1!4m6!3m5!1s0x40307d6bd6211cf9:0x343f6b5e7ae56c6b!8m2!3d40.4092617!4d49.8670924!16zL20vMDFnZjU?entry=ttu&g_ep=EgoyMDI2MDcyOS4wIKXMDSoASAFQAw%3D%3D" class="contact-card" target="_blank" rel="noopener">
+                        <div class="contact-icon location"><i class="fas fa-map-marker-alt"></i></div>
+                        <h4>Ünvan</h4>
+                        <p>Bakı, Azərbaycan</p>
+                        <span class="contact-action">Xəritədə göstər</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ========== MENU PAGE ========== -->
+    <div id="page-menu" class="page">
+        <div class="page-header">
+            <button class="back-btn" onclick="goBack()"><i class="fas fa-arrow-left"></i> Geri</button>
+            <h1>Menyu</h1>
+        </div>
+        <div class="menu-tabs" id="menuTabs">
+            <button class="menu-tab active" onclick="switchTab('breakfast')">Səhər Yeməyi</button>
+            <button class="menu-tab" onclick="switchTab('lunch')">Biznes Lunch</button>
+            <button class="menu-tab" onclick="switchTab('mezeler')">Məzələr</button>
+            <button class="menu-tab" onclick="switchTab('sorbalar')">Şorbalar</button>
+            <button class="menu-tab" onclick="switchTab('esas')">Əsas Yeməklər</button>
+            <button class="menu-tab" onclick="switchTab('desert')">Desertlər</button>
+            <button class="menu-tab" onclick="switchTab('ickiler')">İçkilər</button>
+            <button class="menu-tab" onclick="switchTab('hookah')">Kальyan</button>
+        </div>
+
+        <!-- Breakfast -->
+        <div class="menu-section active" id="tab-breakfast">
+            <div class="menu-grid">
+                <div class="menu-card" onclick="openDish('breakfast-2')">
+                    <div class="menu-card-img-wrap">
+                        <img src="images/gallery-hookah.jpg" alt="2 nəfərlik Səhər Yeməyi" loading="lazy" class="menu-card-img">
+                    </div>
+                    <div class="menu-card-body">
+                        <h3>2 nəfərlik</h3>
+                        <p>Kərə yağı, Qaymaq, Şor, Meyvəli kəsmik, Bal, Şokolad yağı, Yoqurt...</p>
+                        <div class="menu-card-footer">
+                            <span class="price">26 ₼</span>
+                            <button class="add-btn" onclick="event.stopPropagation(); addToCart('breakfast-2', '2 nəfərlik Səhər Yeməyi', 26)">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-card" onclick="openDish('breakfast-4')">
+                    <div class="menu-card-img-wrap">
+                        <img src="images/gallery-hookah.jpg" alt="4 nəfərlik Səhər Yeməyi" loading="lazy" class="menu-card-img">
+                    </div>
+                    <div class="menu-card-body">
+                        <h3>4 nəfərlik</h3>
+                        <p>Kərə yağı, Qaymaq, Şor, Meyvəli kəsmik, Bal, Şokolad yağı, Yoqurt...</p>
+                        <div class="menu-card-footer">
+                            <span class="price">44 ₼</span>
+                            <button class="add-btn" onclick="event.stopPropagation(); addToCart('breakfast-4', '4 nəfərlik Səhər Yeməyi', 44)">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Business Lunch -->
+        <div class="menu-section" id="tab-lunch">
+            <div class="menu-grid">
+                <div class="menu-card" onclick="openDish('lunch-monday')">
+                    <div class="menu-card-img-wrap">
+                        <img src="images/dish-lamb.jpg" alt="Bazar ertəsi" loading="lazy" class="menu-card-img">
+                    </div>
+                    <div class="menu-card-body">
+                        <h3>Bazar ertəsi</h3>
+                        <p>Mərci və ya Toyuq şorbası, Yunan salatı və ya Toyuq salatı...</p>
+                        <div class="menu-card-footer">
+                            <span class="price">8 ₼</span>
+                            <button class="add-btn" onclick="event.stopPropagation(); addToCart('lunch-monday', 'Biznes Lunch – Bazar ertəsi', 8)">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-card" onclick="openDish('lunch-wednesday')">
+                    <div class="menu-card-img-wrap">
+                        <img src="images/dish-lamb.jpg" alt="Çərşənbə" loading="lazy" class="menu-card-img">
+                    </div>
+                    <div class="menu-card-body">
+                        <h3>Çərşənbə</h3>
+                        <p>Mərci və ya Göbələk şorbası, valdorf salat, ət straganof...</p>
+                        <div class="menu-card-footer">
+                            <span class="price">8 ₼</span>
+                            <button class="add-btn" onclick="event.stopPropagation(); addToCart('lunch-wednesday', 'Biznes Lunch – Çərşənbə', 8)">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-card" onclick="openDish('lunch-thursday')">
+                    <div class="menu-card-img-wrap">
+                        <img src="images/dish-lamb.jpg" alt="Cümə axşamı" loading="lazy" class="menu-card-img">
+                    </div>
+                    <div class="menu-card-body">
+                        <h3>Cümə axşamı</h3>
+                        <p>Mərci və ya Toyuq şorbası, Yunan salatı, Toyuq fillet, düyü pilaf...</p>
+                        <div class="menu-card-footer">
+                            <span class="price">8 ₼</span>
+                            <button class="add-btn" onclick="event.stopPropagation(); addToCart('lunch-thursday', 'Biznes Lunch – Cümə axşamı', 8)">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-card" onclick="openDish('lunch-friday')">
+                    <div class="menu-card-img-wrap">
+                        <img src="images/dish-lamb.jpg" alt="Cümə" loading="lazy" class="menu-card-img">
+                    </div>
+                    <div class="menu-card-body">
+                        <h3>Cümə</h3>
+                        <p>Göbələk kremi şorbası, Cezar salatı, Ət bifşteks, kartof püre...</p>
+                        <div class="menu-card-footer">
+                            <span class="price">8 ₼</span>
+                            <button class="add-btn" onclick="event.stopPropagation(); addToCart('lunch-friday', 'Biznes Lunch – Cümə', 8)">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mezeler -->
+        <div class="menu-section" id="tab-mezeler">
+            <div class="menu-grid">
+                <div class="menu-card" onclick="openDish('meze-acili')">
+                    <div class="menu-card-img-wrap">
+                        <img src="images/dish-lamb.jpg" alt="Acılı əzmə" loading="lazy" class="menu-card-img">
+                    </div>
+                    <div class="menu-card-body">
+                        <h3>Acılı əzmə</h3>
+                        <p>Rəngli bibər, pomidor, soğan, tomat, göyərti</p>
+                        <div class="menu-card-footer">
+                            <span class="price">6 ₼</span>
+                            <button class="add-btn" onclick="event.stopPropagation(); addToCart('meze-acili', 'Acılı əzmə', 6)">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-card" onclick="openDish('meze-haydari')">
+                    <div class="menu-card-img-wrap">
+                        <img src="images/dish-lamb.jpg" alt="Haydari" loading="lazy" class="menu-card-img">
+                    </div>
+                    <div class="menu-card-body">
+                        <h3>Haydari</h3>
+                        <p>Süzmə, sarımsaq, nanə, kərə yağı, zeytun yağı</p>
+                        <div class="menu-card-footer">
+                            <span class="price">6 ₼</span>
+                            <button class="add-btn" onclick="event.stopPropagation(); addToCart('meze-haydari', 'Haydari', 6)">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-card" onclick="openDish('meze-humus')">
+                    <div class="menu-card-img-wrap">
+                        <img src="images/dish-lamb.jpg" alt="Humus" loading="lazy" class="menu-card-img">
+                    </div>
+                    <div class="menu-card-body">
+                        <h3>Humus</h3>
+                        <p>Noxud, tahin, sarımsaq, zeytun yağı</p>
+                        <div class="menu-card-footer">
+                            <span class="price">6 ₼</span>
+                            <button class="add-btn" onclick="event.stopPropagation(); addToCart('meze-humus', 'Humus', 6)">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-card" onclick="openDish('meze-pembe')">
+                    <div class="menu-card-img-wrap">
+                        <img src="images/dish-lamb.jpg" alt="Pembe sultan" loading="lazy" class="menu-card-img">
+                    </div>
+                    <div class="menu-card-body">
+                        <h3>Pembe sultan</h3>
+                        <p>Çuğundur, süzmə, sarımsaq</p>
+                        <div class="menu-card-footer">
+                            <span class="price">6 ₼</span>
+                            <button class="add-btn" onclick="event.stopPropagation(); addToCart('meze-pembe', 'Pembe sultan', 6)">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sorbalar -->
+        <div class="menu-section" id="tab-sorbalar">
+            <div class="menu-grid">
+                <div class="menu-card" onclick="openDish('sorba-pendir')">
+                    <div class="menu-card-img-wrap">
+                        <img src="images/dish-lamb.jpg" alt="Pendir şorbası" loading="lazy" class="menu-card-img">
+                    </div>
+                    <div class="menu-card-body">
+                        <h3>Pendir şorbası</h3>
+                        <p>Mavi pendir, çedar, parmesan, gauda, krem pendir</p>
+                        <div class="menu-card-footer">
+                            <span class="price">6 ₼</span>
+                            <button class="add-btn" onclick="event.stopPropagation(); addToCart('sorba-pendir', 'Pendir şorbası', 6)">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-card" onclick="openDish('sorba-tomyam')">
+                    <div class="menu-card-img-wrap">
+                        <img src="images/dish-lamb.jpg" alt="Tom Yam şorbası" loading="lazy" class="menu-card-img">
+                    </div>
+                    <div class="menu-card-body">
+                        <h3>Tom Yam şorbası</h3>
+                        <p>Krevetka, zəncəfil, sarımsaq, göbələk, acı bibər, limon</p>
+                        <div class="menu-card-footer">
+                            <span class="price">10 ₼</span>
+                            <button class="add-btn" onclick="event.stopPropagation(); addToCart('sorba-tomyam', 'Tom Yam şorbası', 10)">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-card" onclick="openDish('sorba-toyuq')">
+                    <div class="menu-card-img-wrap">
+                        <img src="images/dish-lamb.jpg" alt="Toyuq şorbası" loading="lazy" class="menu-card-img">
+                    </div>
+                    <div class="menu-card-body">
+                        <h3>Toyuq şorbası</h3>
+                        <p>Kənd toyuğu, kartof, soğan, rəngli bibər, göyərti</p>
+                        <div class="menu-card-footer">
+                            <span class="price">6 ₼</span>
+                            <button class="add-btn" onclick="event.stopPropagation(); addToCart('sorba-toyuq', 'Toyuq şorbası', 6)">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-card" onclick="openDish('sorba-tomat')">
+                    <div class="menu-card-img-wrap">
+                        <img src="images/dish-lamb.jpg" alt="Tomat şorbası" loading="lazy" class="menu-card-img">
+                    </div>
+                    <div class="menu-card-body">
+                        <h3>Tomat şorbası</h3>
+                        <p>Pomidor, soğan, yerkökü, parmesan, fresh göyərti</p>
+                        <div class="menu-card-footer">
+                            <span class="price">6 ₼</span>
+                            <button class="add-btn" onclick="event.stopPropagation(); addToCart('sorba-tomat', 'Tomat şorbası', 6)">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-card" onclick="openDish('sorba-merci')">
+                    <div class="menu-card-img-wrap">
+                        <img src="images/dish-lamb.jpg" alt="Mərci şorbası" loading="lazy" class="menu-card-img">
+                    </div>
+                    <div class="menu-card-body">
+                        <h3>Mərci şorbası</h3>
+                        <p>Qırmızı mərci, soğan, havuc, zirə, limon suyu</p>
+                        <div class="menu-card-footer">
+                            <span class="price">6 ₼</span>
+                            <button class="add-btn" onclick="event.stopPropagation(); addToCart('sorba-merci', 'Mərci şorbası', 6)">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-card" onclick="openDish('sorba-gobeleq')">
+                    <div class="menu-card-img-wrap">
+                        <img src="images/dish-lamb.jpg" alt="Göbələk kremi şorbası" loading="lazy" class="menu-card-img">
+                    </div>
+                    <div class="menu-card-body">
+                        <h3>Göbələk kremi şorbası</h3>
+                        <p>Ağ göbələk, qaymaqlı sousu, sarımsaq, kərə yağı</p>
+                        <div class="menu-card-footer">
+                            <span class="price">7 ₼</span>
+                            <button class="add-btn" onclick="event.stopPropagation(); addToCart('sorba-gobeleq', 'Göbələk kremi şorbası', 7)">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Esas Yemekler -->
+        <div class="menu-section" id="tab-esas">
+            <div class="menu-grid">
+                <div class="menu-card" onclick="openDish('esas-quzu')">
+                    <div class="menu-card-img-wrap">
+                        <img src="images/dish-lamb.jpg" alt="Quzu baldırı" loading="lazy" class="menu-card-img">
+                    </div>
+                    <div class="menu-card-body">
+                        <h3>Quzu baldırı gilas sousunda</h3>
+                        <p>Yavaş bişirilmiş quzu, gilas sousu, bişmiş kartof</p>
+                        <div class="menu-card-footer">
+                            <span class="price">22 ₼</span>
+                            <button class="add-btn" onclick="event.stopPropagation(); addToCart('esas-quzu', 'Quzu baldırı gilas sousunda', 22)">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-card" onclick="openDish('esas-toyuq-julyen')">
+                    <div class="menu-card-img-wrap">
+                        <img src="images/dish-lamb.jpg" alt="Toyuq Julyen" loading="lazy" class="menu-card-img">
+                    </div>
+                    <div class="menu-card-body">
+                        <h3>Toyuq Julyen</h3>
+                        <p>Toyuq filesi, göbələk, qaymaq sousu, pendir qabığı</p>
+                        <div class="menu-card-footer">
+                            <span class="price">12 ₼</span>
+                            <button class="add-btn" onclick="event.stopPropagation(); addToCart('esas-toyuq-julyen', 'Toyuq Julyen', 12)">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-card" onclick="openDish('esas-et-qulyaj')">
+                    <div class="menu-card-img-wrap">
+                        <img src="images/dish-lamb.jpg" alt="Ət Qulyaj" loading="lazy" class="menu-card-img">
+                    </div>
+                    <div class="menu-card-body">
+                        <h3>Ət Qulyaj</h3>
+                        <p>Dana əti, soğan, tomat sousu, ədviyyat qarışığı</p>
+                        <div class="menu-card-footer">
+                            <span class="price">14 ₼</span>
+                            <button class="add-btn" onclick="event.stopPropagation(); addToCart('esas-et-qulyaj', 'Ət Qulyaj', 14)">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-card" onclick="openDish('esas-et-straganof')">
+                    <div class="menu-card-img-wrap">
+                        <img src="images/dish-lamb.jpg" alt="Ət Stroqanof" loading="lazy" class="menu-card-img">
+                    </div>
+                    <div class="menu-card-body">
+                        <h3>Ət Stroqanof</h3>
+                        <p>Mal əti zolaqlı, göbələk, ekşi qaymaq sousu, düyü</p>
+                        <div class="menu-card-footer">
+                            <span class="price">15 ₼</span>
+                            <button class="add-btn" onclick="event.stopPropagation(); addToCart('esas-et-straganof', 'Ət Stroqanof', 15)">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-card" onclick="openDish('esas-toyuq-langet')">
+                    <div class="menu-card-img-wrap">
+                        <img src="images/dish-lamb.jpg" alt="Toyuq Langet" loading="lazy" class="menu-card-img">
+                    </div>
+                    <div class="menu-card-body">
+                        <h3>Toyuq Langet</h3>
+                        <p>Döyülmüş toyuq filesi, qızardılmış çörək qabığı, limon</p>
+                        <div class="menu-card-footer">
+                            <span class="price">12 ₼</span>
+                            <button class="add-btn" onclick="event.stopPropagation(); addToCart('esas-toyuq-langet', 'Toyuq Langet', 12)">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-card" onclick="openDish('esas-bifsteks')">
+                    <div class="menu-card-img-wrap">
+                        <img src="images/dish-lamb.jpg" alt="Ət bifşteks" loading="lazy" class="menu-card-img">
+                    </div>
+                    <div class="menu-card-body">
+                        <h3>Ət bifşteks</h3>
+                        <p>Seçilmiş mal əti, kartof püresi, yaşıl salat</p>
+                        <div class="menu-card-footer">
+                            <span class="price">16 ₼</span>
+                            <button class="add-btn" onclick="event.stopPropagation(); addToCart('esas-bifsteks', 'Ət bifşteks', 16)">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Desertler -->
+        <div class="menu-section" id="tab-desert">
+            <div class="menu-grid">
+                <div class="menu-card" onclick="openDish('desert-blincik')">
+                    <div class="menu-card-img-wrap">
+                        <img src="images/gallery-hookah.jpg" alt="Kəsmikli blinçik" loading="lazy" class="menu-card-img">
+                    </div>
+                    <div class="menu-card-body">
+                        <h3>Kəsmikli blinçik</h3>
+                        <p>Ev kəsmiyi, şokolad surupu, qaymaq, meyvə garniri</p>
+                        <div class="menu-card-footer">
+                            <span class="price">8 ₼</span>
+                            <button class="add-btn" onclick="event.stopPropagation(); addToCart('desert-blincik', 'Kəsmikli blinçik', 8)">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-card" onclick="openDish('desert-cheesecake')">
+                    <div class="menu-card-img-wrap">
+                        <img src="images/gallery-hookah.jpg" alt="Cheesecake" loading="lazy" class="menu-card-img">
+                    </div>
+                    <div class="menu-card-body">
+                        <h3>Cheesecake</h3>
+                        <p>Krem pendir, biskvit, çiyələk sousunda</p>
+                        <div class="menu-card-footer">
+                            <span class="price">9 ₼</span>
+                            <button class="add-btn" onclick="event.stopPropagation(); addToCart('desert-cheesecake', 'Cheesecake', 9)">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-card" onclick="openDish('desert-tiramisu')">
+                    <div class="menu-card-img-wrap">
+                        <img src="images/gallery-hookah.jpg" alt="Tiramisu" loading="lazy" class="menu-card-img">
+                    </div>
+                    <div class="menu-card-body">
+                        <h3>Tiramisu</h3>
+                        <p>Maskarpone, espresso, savoiardi biskvit, kakao tozu</p>
+                        <div class="menu-card-footer">
+                            <span class="price">9 ₼</span>
+                            <button class="add-btn" onclick="event.stopPropagation(); addToCart('desert-tiramisu', 'Tiramisu', 9)">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-card" onclick="openDish('desert-waffle')">
+                    <div class="menu-card-img-wrap">
+                        <img src="images/gallery-hookah.jpg" alt="Waffle" loading="lazy" class="menu-card-img">
+                    </div>
+                    <div class="menu-card-body">
+                        <h3>Waffle</h3>
+                        <p>Ev waffle, dondurma, şokolad, gilas</p>
+                        <div class="menu-card-footer">
+                            <span class="price">10 ₼</span>
+                            <button class="add-btn" onclick="event.stopPropagation(); addToCart('desert-waffle', 'Waffle', 10)">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ickiler -->
+        <div class="menu-section" id="tab-ickiler">
+            <div class="menu-grid">
+                <div class="menu-card" onclick="openDish('icki-cay')">
+                    <div class="menu-card-img-wrap">
+                        <img src="images/gallery-hookah.jpg" alt="Azərbaycan çayı" loading="lazy" class="menu-card-img">
+                    </div>
+                    <div class="menu-card-body">
+                        <h3>Azərbaycan çayı</h3>
+                        <p>Armudu stəkanda ənənəvi çay, qənddən ilə</p>
+                        <div class="menu-card-footer">
+                            <span class="price">3 ₼</span>
+                            <button class="add-btn" onclick="event.stopPropagation(); addToCart('icki-cay', 'Azərbaycan çayı', 3)">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-card" onclick="openDish('icki-limonad')">
+                    <div class="menu-card-img-wrap">
+                        <img src="images/gallery-hookah.jpg" alt="Ev limonadı" loading="lazy" class="menu-card-img">
+                    </div>
+                    <div class="menu-card-body">
+                        <h3>Ev limonadı</h3>
+                        <p>Təzə limon, nanə, zəncəfil, qazsız su</p>
+                        <div class="menu-card-footer">
+                            <span class="price">5 ₼</span>
+                            <button class="add-btn" onclick="event.stopPropagation(); addToCart('icki-limonad', 'Ev limonadı', 5)">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-card" onclick="openDish('icki-fresh')">
+                    <div class="menu-card-img-wrap">
+                        <img src="images/gallery-hookah.jpg" alt="Təzə sıxılmış şirə" loading="lazy" class="menu-card-img">
+                    </div>
+                    <div class="menu-card-body">
+                        <h3>Təzə sıxılmış şirə</h3>
+                        <p>Portağal, alma, yaxud qarışıq meyvə</p>
+                        <div class="menu-card-footer">
+                            <span class="price">5 ₼</span>
+                            <button class="add-btn" onclick="event.stopPropagation(); addToCart('icki-fresh', 'Təzə sıxılmış şirə', 5)">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-card" onclick="openDish('icki-smoothie')">
+                    <div class="menu-card-img-wrap">
+                        <img src="images/gallery-hookah.jpg" alt="Smoothie" loading="lazy" class="menu-card-img">
+                    </div>
+                    <div class="menu-card-body">
+                        <h3>Smoothie</h3>
+                        <p>Çiyələk, banan, yoqfurt, bal</p>
+                        <div class="menu-card-footer">
+                            <span class="price">7 ₼</span>
+                            <button class="add-btn" onclick="event.stopPropagation(); addToCart('icki-smoothie', 'Smoothie', 7)">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-card" onclick="openDish('icki-espresso')">
+                    <div class="menu-card-img-wrap">
+                        <img src="images/gallery-hookah.jpg" alt="Espresso" loading="lazy" class="menu-card-img">
+                    </div>
+                    <div class="menu-card-body">
+                        <h3>Espresso</h3>
+                        <p>Premium arabika blend, İtalyan espresso maşınında</p>
+                        <div class="menu-card-footer">
+                            <span class="price">4 ₼</span>
+                            <button class="add-btn" onclick="event.stopPropagation(); addToCart('icki-espresso', 'Espresso', 4)">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-card" onclick="openDish('icki-cappuccino')">
+                    <div class="menu-card-img-wrap">
+                        <img src="images/gallery-hookah.jpg" alt="Kapuçino" loading="lazy" class="menu-card-img">
+                    </div>
+                    <div class="menu-card-body">
+                        <h3>Kapuçino</h3>
+                        <p>Espresso, buxarlanmış süd, köpüklü süd</p>
+                        <div class="menu-card-footer">
+                            <span class="price">5 ₼</span>
+                            <button class="add-btn" onclick="event.stopPropagation(); addToCart('icki-cappuccino', 'Kapuçino', 5)">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hookah -->
+        <div class="menu-section" id="tab-hookah">
+            <div class="menu-grid">
+                <div class="menu-card" onclick="openDish('hookah-meyveli')">
+                    <div class="menu-card-img-wrap">
+                        <img src="images/gallery-hookah.jpg" alt="Meyvəli kəlyan" loading="lazy" class="menu-card-img">
+                    </div>
+                    <div class="menu-card-body">
+                        <h3>Meyvəli kəlyan</h3>
+                        <p>Portağal, çiyələk, limon, nanə, buz dolu şüşə qab</p>
+                        <div class="menu-card-footer">
+                            <span class="price">25 ₼</span>
+                            <button class="add-btn" onclick="event.stopPropagation(); addToCart('hookah-meyveli', 'Meyvəli kəlyan', 25)">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-card" onclick="openDish('hookah-klassik')">
+                    <div class="menu-card-img-wrap">
+                        <img src="images/gallery-hookah.jpg" alt="Klassik kəlyan" loading="lazy" class="menu-card-img">
+                    </div>
+                    <div class="menu-card-body">
+                        <h3>Klassik kəlyan</h3>
+                        <p>Elma, üzüm, nane, nar – seçimli ətirli tütün</p>
+                        <div class="menu-card-footer">
+                            <span class="price">20 ₼</span>
+                            <button class="add-btn" onclick="event.stopPropagation(); addToCart('hookah-klassik', 'Klassik kəlyan', 20)">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-card" onclick="openDish('hookah-premium')">
+                    <div class="menu-card-img-wrap">
+                        <img src="images/gallery-hookah.jpg" alt="Premium kəlyan" loading="lazy" class="menu-card-img">
+                    </div>
+                    <div class="menu-card-body">
+                        <h3>Premium kəlyan</h3>
+                        <p>Xüsusi qarışım, premium tütün, buz dolu egeglas şüşəsi</p>
+                        <div class="menu-card-footer">
+                            <span class="price">35 ₼</span>
+                            <button class="add-btn" onclick="event.stopPropagation(); addToCart('hookah-premium', 'Premium kəlyan', 35)">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-card" onclick="openDish('hookah-citrus')">
+                    <div class="menu-card-img-wrap">
+                        <img src="images/gallery-hookah.jpg" alt="Sitrus kəlyan" loading="lazy" class="menu-card-img">
+                    </div>
+                    <div class="menu-card-body">
+                        <h3>Sitrus kəlyan</h3>
+                        <p>Limon, portağal, qreypfrut, nanə tazəliyi</p>
+                        <div class="menu-card-footer">
+                            <span class="price">22 ₼</span>
+                            <button class="add-btn" onclick="event.stopPropagation(); addToCart('hookah-citrus', 'Sitrus kəlyan', 22)">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== GALLERY PAGE ========== -->
+    <div id="page-gallery" class="page">
+        <div class="page-header">
+            <button class="back-btn" onclick="goBack()"><i class="fas fa-arrow-left"></i> Geri</button>
+            <h1>Qalerya</h1>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-item" onclick="openGallery(0)">
+                <img src="images/gallery-hookah.jpg" alt="Kəlyan" loading="lazy">
+                <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+            </div>
+            <div class="gallery-item" onclick="openGallery(1)">
+                <img src="images/dish-lamb.jpg" alt="Quzu baldırı" loading="lazy">
+                <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+            </div>
+            <div class="gallery-item" onclick="openGallery(2)">
+                <img src="images/gallery-hookah.jpg" alt="Restoran atmosferi" loading="lazy">
+                <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+            </div>
+            <div class="gallery-item" onclick="openGallery(3)">
+                <img src="images/dish-lamb.jpg" alt="Əsas yeməklər" loading="lazy">
+                <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+            </div>
+            <div class="gallery-item" onclick="openGallery(4)">
+                <img src="images/gallery-hookah.jpg" alt="Meyvəli içkilər" loading="lazy">
+                <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+            </div>
+            <div class="gallery-item" onclick="openGallery(5)">
+                <img src="images/dish-lamb.jpg" alt="Restoran yeməkləri" loading="lazy">
+                <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Gallery Lightbox -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+        <button class="lightbox-close" onclick="closeLightbox()"><i class="fas fa-times"></i></button>
+        <button class="lightbox-prev" onclick="event.stopPropagation(); lightboxNav(-1)"><i class="fas fa-chevron-left"></i></button>
+        <img id="lightboxImg" src="" alt="">
+        <button class="lightbox-next" onclick="event.stopPropagation(); lightboxNav(1)"><i class="fas fa-chevron-right"></i></button>
+    </div>
+
+    <!-- ========== RESERVATION PAGE ========== -->
+    <div id="page-reservation" class="page">
+        <div class="page-header">
+            <button class="back-btn" onclick="goBack()"><i class="fas fa-arrow-left"></i> Geri</button>
+            <h1>Rezervasiya</h1>
+        </div>
+        <div class="container">
+            <div class="reservation-wrap">
+                <div class="reservation-info">
+                    <h2>Masanızı rezerv edin</h2>
+                    <p>Xüsusi anlarınız üçün masanızı əvvəlcədən rezerv edin. Formu doldurun və biz sizinlə əlaqə saxlayacağıq.</p>
+                    <ul class="reservation-features">
+                        <li><i class="fas fa-check"></i> Pulsuz rezervasiya</li>
+                        <li><i class="fas fa-check"></i> 24 saat ərzində təsdiq</li>
+                        <li><i class="fas fa-check"></i> Xüsusi günlər üçün dekorasiya</li>
+                        <li><i class="fas fa-check"></i> VIP zallar mövcuddur</li>
+                    </ul>
+                </div>
+                <form class="reservation-form" id="reservationForm" onsubmit="submitReservation(event)">
+                    <div class="form-group">
+                        <label for="resName">Ad və Soyad *</label>
+                        <input type="text" id="resName" placeholder="Adınızı daxil edin" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="resPhone">Telefon nömrəsi *</label>
+                        <input type="tel" id="resPhone" placeholder="+994 XX XXX XX XX" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="resDate">Tarix *</label>
+                            <input type="date" id="resDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="resTime">Saat *</label>
+                            <input type="time" id="resTime" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="resGuests">Qonaq sayı *</label>
+                        <select id="resGuests" required>
+                            <option value="">Seçin</option>
+                            <option value="1">1 nəfər</option>
+                            <option value="2">2 nəfər</option>
+                            <option value="3">3 nəfər</option>
+                            <option value="4">4 nəfər</option>
+                            <option value="5">5 nəfər</option>
+                            <option value="6">6 nəfər</option>
+                            <option value="7-10">7-10 nəfər</option>
+                            <option value="10+">10+ nəfər</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="resNote">Əlavə qeyd</label>
+                        <textarea id="resNote" placeholder="Xüsusi istəyiniz varsa qeyd edin..." rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="btn-submit">
+                        <i class="fab fa-whatsapp"></i> WhatsApp ilə Göndər
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== FAQ PAGE ========== -->
+    <div id="page-faq" class="page">
+        <div class="page-header">
+            <button class="back-btn" onclick="goBack()"><i class="fas fa-arrow-left"></i> Geri</button>
+            <h1>Tez-tez verilən suallar</h1>
+        </div>
+        <div class="container">
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>Rezervasiya etmək mütləqdirmi?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Rezervasiya etmək məcburi deyil, lakin hafta sonu və bayram günlərinde masa tapmaq çətin ola bilər. Rahat oturma yeri təmin etmək üçün əvvəlcədən rezervasiya etməyinizi tövsiyə edirik.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>Kəlyan sifariş etmək üçün minimum yaş tələbi varmı?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Bəli, kəlyan xidmətindən yalnız 18 yaş və yuxarı şəxslər istifadə edə bilər. Şəxsiyyət vəsiqəsi tələb edilə bilər.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>Xüsusi tədbirlər (ad günü, toy, şirkət gecəsi) keçirə bilərsinizmi?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Bəli! VIP zal və xüsusi dekorasiya xidmətimiz mövcuddur. Ətraflı məlumat üçün bizə WhatsApp vasitəsilə müraciət edin: +994 55 940 60 18</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>Menyu onlayn sifariş etmək mümkündürmü?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Hal-hazırda yalnız restoranımızda oturaq sifariş qəbul edilir. Gələcəkdə çatdırılma xidməti əlavə ediləcək.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>Uşaqlar üçün xüsusi menyu varmı?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Bəli, uşaqlar üçün xüsusi sadələşdirilmiş menyu mövcuddur. İstəyinizdə ofisiant sizə bu barədə məlumat verəcək.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>Park etmə imkanı varmı?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Restoranımızın yaxınlığında ödənişli park sahəsi mövcuddur. Valetparkinq xidmətimiz haqqında ətraflı məlumat üçün bizimlə əlaqə saxlayın.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>Ödəniş üsulları hansılardır?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Nağd, kredit/debet kartı (Visa, MasterCard) və bank köçürməsi qəbul edilir.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>Wifi xidməti varmı?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Bəli, pulsuz WiFi xidmətimiz mövcuddur. Şifrəni masanızda olan QR koddan ala bilərsiniz.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== VACANCIES PAGE ========== -->
+    <div id="page-vacancies" class="page">
+        <div class="page-header">
+            <button class="back-btn" onclick="goBack()"><i class="fas fa-arrow-left"></i> Geri</button>
+            <h1>Vakansiyalar</h1>
+        </div>
+        <div class="container">
+            <p class="vacancies-intro">Burj Khalifa Restaurant komandasına qoşulun! Enerjili, peşəkar komandamızda işləmək istəyənlər üçün aşağıdakı vakansiyalar mövcuddur.</p>
+            <div class="vacancies-grid">
+                <div class="vacancy-card" onclick="openVacancy('ofisant')">
+                    <div class="vacancy-icon"><i class="fas fa-concierge-bell"></i></div>
+                    <h3>Ofisant</h3>
+                    <p>Tam ştat, təcrübə tələb olunur</p>
+                    <span class="vacancy-badge">Açıqdır</span>
+                </div>
+                <div class="vacancy-card" onclick="openVacancy('aspcaz')">
+                    <div class="vacancy-icon"><i class="fas fa-utensils"></i></div>
+                    <h3>Aşpaz köməkçisi</h3>
+                    <p>Tam ştat, başlanğıc səviyyə qəbul edilir</p>
+                    <span class="vacancy-badge">Açıqdır</span>
+                </div>
+                <div class="vacancy-card" onclick="openVacancy('kassa')">
+                    <div class="vacancy-icon"><i class="fas fa-cash-register"></i></div>
+                    <h3>Kassir</h3>
+                    <p>Tam ştat, hesablama bacarığı tələb olunur</p>
+                    <span class="vacancy-badge">Açıqdır</span>
+                </div>
+                <div class="vacancy-card" onclick="openVacancy('barmen')">
+                    <div class="vacancy-icon"><i class="fas fa-glass-martini-alt"></i></div>
+                    <h3>Barmen</h3>
+                    <p>Tam ştat, sertifikat üstünlükdür</p>
+                    <span class="vacancy-badge">Açıqdır</span>
+                </div>
+                <div class="vacancy-card" onclick="openVacancy('temizlik')">
+                    <div class="vacancy-icon"><i class="fas fa-broom"></i></div>
+                    <h3>Təmizlik işçisi</h3>
+                    <p>Yarım ştat / tam ştat</p>
+                    <span class="vacancy-badge">Açıqdır</span>
+                </div>
+                <div class="vacancy-card" onclick="openVacancy('admin')">
+                    <div class="vacancy-icon"><i class="fas fa-user-tie"></i></div>
+                    <h3>Administrator</h3>
+                    <p>Tam ştat, idarəetmə təcrübəsi üstünlükdür</p>
+                    <span class="vacancy-badge">Açıqdır</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- DISH MODAL -->
+    <div class="modal-overlay" id="dishOverlay" onclick="closeDishModal()"></div>
+    <div class="modal" id="dishModal">
+        <button class="modal-close" onclick="closeDishModal()"><i class="fas fa-times"></i></button>
+        <div class="modal-img-wrap">
+            <img id="modalImg" src="" alt="">
+        </div>
+        <div class="modal-body">
+            <h2 id="modalTitle"></h2>
+            <p id="modalDesc"></p>
+            <div class="modal-footer">
+                <span class="modal-price" id="modalPrice"></span>
+                <button class="btn-add-modal" id="modalAddBtn" onclick="addToCartFromModal()">
+                    <i class="fas fa-shopping-basket"></i> Səbətə əlavə et
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- VACANCY MODAL -->
+    <div class="modal-overlay" id="vacancyOverlay" onclick="closeVacancyModal()"></div>
+    <div class="modal" id="vacancyModal">
+        <button class="modal-close" onclick="closeVacancyModal()"><i class="fas fa-times"></i></button>
+        <div class="modal-body vacancy-modal-body">
+            <div class="vacancy-modal-icon" id="vacModalIcon"></div>
+            <h2 id="vacModalTitle"></h2>
+            <div id="vacModalContent"></div>
+            <button class="btn-submit vac-apply-btn" onclick="applyVacancy()">
+                <i class="fab fa-whatsapp"></i> Əlaqə saxla
+            </button>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

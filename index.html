@@ -4,11 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Burj Khalifa Restaurant</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="icon" type="image/png" href="images/logo.png">
     <meta name="description" content="Burj Khalifa Restaurant - Bakının mərkəzində premium restoran təcrübəsi">
     <meta name="theme-color" content="#c9a84c">
+    <link rel="icon" type="image/jpeg" href="favicon.ico">
+    <!-- Preconnect for faster font awesome load -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
 </head>
 <body>
     <!-- NAVIGATION -->
@@ -41,6 +44,7 @@
     <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
     <div class="cart-panel" id="cartPanel">
         <div class="cart-header">
+            <button onclick="toggleCart()" class="cart-back-btn" aria-label="Geri"><i class="fas fa-arrow-left"></i> Geri</button>
             <h3>Səbət</h3>
             <button onclick="toggleCart()" class="cart-close"><i class="fas fa-times"></i></button>
         </div>
